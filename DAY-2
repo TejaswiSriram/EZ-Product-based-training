@@ -1,1 +1,27 @@
+def transpose(matrix):
+    return [[matrix[j][i] for j in range(len(matrix))] for i in range(len(matrix[0]))]
+
+def rotate_matrix(matrix):
+    return [list(reversed(row)) for row in transpose(matrix)]
+
+def print_matrix(matrix):
+    for row in matrix:
+        print(*row)
+
+rows = int(input("Enter the number of rows: "))
+cols = int(input("Enter the number of columns: "))
+
+matrix = []
+for i in range(rows):
+    row = list(map(int, input().split()))
+    matrix.append(row)
+
+#print("\nOriginal Matrix:")
+#print_matrix(matrix)
+
+rotated_matrix = rotate_matrix(matrix)
+
+print("\nRotated Matrix:")
+print_matrix(rotated_matrix)
+
 
