@@ -1,0 +1,67 @@
+*******************************DAY3*****************************
+
+print(10*4/6+3-1%2)
+In python we get = 8.666666
+
+BIT WISE OPERATORS:
+C          PYTHON             JAVA
+
+&          and                  &     -- AND 
+|           |                   |     -- OR
+~           ~                   ~     -- NEGATION
+^           ^                   ^     -- XOR
+==================================================================
+CREATE AN ONE DIMENSIONAL ARRAY B/W 10 TO 40. EXTRACT AND PRINT 
+1. Even Numbers
+2. 2 Power values
+
+x = int(input("Enter initial value: "))
+y = int(input("Enter ending value: "))
+print("Here is available even numbers")
+for i in range(x, y+1):
+    if i % 2 == 0:
+        print(i)
+print("Here is 2 power values")
+for j in range(x, y+1):
+    if (j&(j-1)) == 0 and j!=0:
+        print(j)
+======================================================================
+
+
+We Have done some problems on Bit Wise Operators and XOR operations.(in notes) 
+
+=======================================================================
+BIT MANIPULACTION TRICKS:
+xor ^
+even 1's :0
+odd 1's  :1
+
+xor of number itself is 0
+xor of number with 0 is number itself
+=======================================================================
+ RIGHT SHIFT:
+
+5>>1
+5/2 
+ANS:2
+=======================================================================
+After creating an array find out the smallest missing positive integer
+without using inbuilt functions
+
+def positive(nums):
+    new = [num for num in nums if num >= 0]
+    new.sort()
+    small = 0
+    for num in new:
+        if num == small:
+            small += 1
+        else:
+            break
+
+    return small
+my_array = [1,5,-2,]
+result = positive(my_array)
+print("The smallest missing positive integer is:", result)
+============================================================================
+
+
