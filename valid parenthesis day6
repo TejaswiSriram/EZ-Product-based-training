@@ -1,0 +1,19 @@
+def is_valid_parentheses(s):
+    stack = []
+    parentheses = {')': '(', '}': '{', ']': '['}
+
+    for char in s:
+        if char in parentheses.values():
+            stack.append(char)
+        elif char in parentheses.keys():
+            if not stack or stack.pop() != parentheses[char]:
+                return False
+        else:
+            return False
+
+    return len(stack) == 0
+input_string = "({[]})"
+if is_valid_parentheses(input_string):
+    print(f"{input_string} is a valid parentheses expression.")
+else:
+    print(f"{input_string} is not a valid parentheses expression.")
