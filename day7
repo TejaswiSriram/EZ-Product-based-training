@@ -1,0 +1,72 @@
+Recursion:-                                                                                                                                         
+-->Recursion is a fundamental concept in computer science.                                                                                          
+-->It involves a function repeatedly calling itself until a base case is reached.                                                                   
+-->Recursion is used to solve problems by breaking them down into smaller, similar sub-problems.                                                    
+-->It can significantly reduce code length and complexity compared to iteration.                                                                    
+-->Recursion is an optimal approach for tasks like tree and graph traversals and finding the Greatest Common Divisor (GCD) using Euclid's algorithm.
+                                                                                                                                                    
+time complexity of recursion:-                                                                                                                      
+-->T(n) represents the time complexity for calculating factorial(n).                                                                                
+-->T(0) is 1 because its a simple base case.                                                                                                        
+-->T(n) =T(n-1)+3, and this continues until we reach T(0).                                                                                          
+                                                                                                                                                    
+Backtracking:-                                                                                                                                      
+-->Backtracking is a technique for finding solutions to problems through recursive exploration.                                                     
+-->It involves undoing recursive changes if certain conditions are not met and discarding less optimal solutions.                                   
+-->Backtracking is more efficient than brute force in solving complex problems, although it can have exponential time complexity.                   
+-->It excels in solving challenging problems like the N-Queens problem and the Traveling Salesman  Problem (TSP).                                   
+-->It explores various choices and systematically backtracks when necessary to arrive at the best solution.                                         
+                                                                                                                                                    
+how its work:                                                                                                                                       
+1)you break the problem into smaller parts or sub-problems.
+2)you try to solve each sub-problem step by step.
+3)if a sub-problem doesnt work out or doesnt meet the conditkions you need, you backtrack(go back) to the previous step and try a different apporach.
+4)you keep doing this until you find a solution that satisfies all the problems 
+
+complexity:-amount of memory
+time complexity:-measures the amount of computational time an algorithm or program takes to run as a function of the size of its input.
+space complexity:measures the amount of memory or storage space required by an algorithm or program to execute as a function of the size of its input.
+
+bubble sort using optimization:-
+
+
+#include <stdio.h>
+
+void bubbleSort(int arr[], int n) {
+    int swapped;
+    for (int i = 0; i < n - 1; i++) {
+        swapped = 0; // Flag to check if any swaps are made in this pass
+        for (int j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                // Swap arr[j] and arr[j + 1]
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+                swapped = 1; // Set the flag to true
+            }
+        }
+        // If no two elements were swapped in this pass, the array is already sorted
+        if (swapped == 0) {
+            break;
+        }
+    }
+}
+
+int main() {
+    int arr[] = {64, 34, 25, 12, 22, 11, 90};
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    printf("Original array: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+
+    bubbleSort(arr, n);
+
+    printf("\nSorted array: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+
+    return 0;
+}
