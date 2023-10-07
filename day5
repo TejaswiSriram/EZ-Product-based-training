@@ -1,0 +1,32 @@
+question:-
+write code to print 3*3 matrix where from every row and every column sum should be  same.
+
+def generate_magic_square(n):
+    magic_square = [[0] * n for _ in range(n)]
+
+    i, j = 0, n // 2
+    num = 1
+
+    while num <= n * n:
+        magic_square[i][j] = num
+        num += 1
+        newi, newj = (i - 1) % n, (j + 1) % n
+        if magic_square[newi][newj]:
+            i = (i + 1) % n
+        else:
+            i, j = newi, newj
+
+    return magic_square
+
+def print_matrix(matrix):
+    for row in matrix:
+        print(" ".join(map(str, row)))
+
+n = 3  
+magic_square = generate_magic_square(n)
+print_matrix(magic_square)
+
+ output: 
+8 1 6
+3 5 7
+4 9 2
