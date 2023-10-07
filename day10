@@ -1,8 +1,163 @@
-1q) input:7564168
+1) input:7564168
 example:seperate odd place integers: 5 4 6
 you have to return a 4 digit otp by squaring the digits.
 digits from above ex : 5 4 6
 squares: 25,16,36
 so otp should be:2516
 
-code: 
+input_string = input("Enter a number: ")
+otp = ''
+for i in range(0, len(input_string), 2):
+    digit = int(input_string[i])
+    squared_digit = digit ** 2
+    otp += str(squared_digit)
+while len(otp) < 4:
+    otp = '0' + otp
+print("OTP:", otp)
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+2) take the input from the user in the given format(consist of name and code) find the max digit from the code which is less or equal to the length of 
+string and put that place char in final string, if there is no any digit found which not satisfy the condition that simply put 'x'.
+#input:
+abhishek:43848,mayur:3749,friend:3949,yeah:7878
+#output:kueX
+
+s=input()
+los=s.split(',')
+op=''
+for i in los:
+    nc=i.split(':')
+    name=nc[0]
+    code=nc[1]
+    max=0
+    for i in code:
+        if int(i)>max and int(i)<=len(name):
+            max=int(i)
+    if max==0:
+        op+='X'
+    else:
+        op+=name[max-1]
+        
+print(op)
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+3) Balanced brackets problem:
+
+def demo(s):
+    c=0
+    l=[]
+    for i in s:
+        if i=='[' or i=='{' or i=='(':
+            l.append(i)
+            c+=1
+            continue
+        if len(l)==0:
+            return c+1
+        temp=l.pop()
+        if temp=='(' and i==')':
+            c+=1
+        elif temp=='[' and i==']':
+            c+=1
+        elif temp=='{' and i=='}':
+            c+=1
+        else:
+            return c+1
+    if len(l)==0:
+        return 0
+    else:
+        return c+1
+s=input()
+if _name_ == '_main_':
+    print(demo(s))
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+4) Reverse the given string and keeping its special character at the same place.
+example:
+input:srin#ivas
+output: savi#nirs
+input:we@lcome
+output:em@oclem
+input:pyth#on
+output:noht#yp
+
+def reverse_with_special_characters(input_str):
+    input_list = list(input_str)
+    left, right = 0, len(input_str) - 1
+
+    while left < right:
+        if not input_list[left].isalnum() and not input_list[right].isalnum():
+            left += 1
+            right -= 1
+        elif not input_list[left].isalnum():
+            left += 1
+        elif not input_list[right].isalnum():
+            right -= 1
+        else:
+            input_list[left], input_list[right] = input_list[right], input_list[left]
+            left += 1
+            right -= 1
+
+    return ''.join(input_list)
+
+
+user_input = input()
+output = reverse_with_special_characters(user_input)
+print(output)
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+5) two pointers approach:(2 pointers in one loop)
+problem:#1 (two sum problem)
+arr[]={2,3,5,7,10,12,15,20}
+answer:4,6
+explaination:retrun i and jth pointer positions whose sum of indexed values equals to target.
+
+
+def two_sum(arr, target):
+    left = 0
+    right = len(arr) - 1
+
+    while left < right:
+        current_sum = arr[left] + arr[right]
+
+        if current_sum == target:
+            return left, right
+        elif current_sum < target:
+            left += 1
+        else:
+            right -= 1
+
+    # If no such pair exists, return None or any other suitable indicator
+    return None
+
+# Test the function with the provided example
+arr = [2, 3, 5, 7, 10, 12, 15, 20]
+target = 16
+result = two_sum(arr, target)
+
+if result is not None:
+    i, j = result
+    print(f"Indices: {i}, {j}")
+    print(f"Values: {arr[i]}, {arr[j]}")
+else:
+    print("No such pair found.")
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+6)
+def binary_search_ceil(arr,target):
+    left,right=0,len(arr)-1
+    while left <= right:
+        mid=left+(right-left)
+        if arr[mid]==target:
+            return arr[mid]
+        elif arr[mid]<target:
+             left=mid+1
+        else:
+             ceil=arr[mid]
+             right=mid-1
+    return ceil
+print(binary_search_ceil([1,2,8,10,10,12,19],7))
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
