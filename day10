@@ -1,0 +1,8 @@
+1q) input:7564168
+example:seperate odd place integers: 5 4 6
+you have to return a 4 digit otp by squaring the digits.
+digits from above ex : 5 4 6
+squares: 25,16,36
+so otp should be:2516
+
+code: 
