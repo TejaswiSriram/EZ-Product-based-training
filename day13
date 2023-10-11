@@ -1,0 +1,70 @@
+three pointer algorithm:- The three-pointer algorithm is typically used in more complex problems or problems with specific 
+constraints. In this algorithm, three pointers are manipulated to track specific positions within the array or sequence.
+def solve(arr):
+    for p3 in range(len(arr)-2):
+        p1 = p3+1
+        p2 = len(arr)-1
+        while p1<p2:
+            sum = arr[p1] + arr[p2] + arr[p3]
+            if sum == target:
+                return (arr[p1], arr[p2], arr[p3])
+            elif sum < target:
+                p1 += 1
+            else:
+                p2 -= 1
+    return False
+    
+arr = [2,3,4,5,6]
+target = 15
+result = solve(arr)
+print(result)
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+two pointer algorithm:-  for solving problems that involve arrays or sequences. It is especially useful for optimizing the time 
+complexity of certain algorithms. The basic idea behind the two-pointer algorithm is to use two pointers, often initialized at 
+different positions in the array, and then manipulate these pointers to traverse the array or sequence efficiently.
+def solve(arr):
+    p1 = 0
+    p2 = len(arr)-1
+    while p1<p2:
+        sum = arr[p1] + arr[p2]
+        if sum == target:
+            return (arr[p1], arr[p2])
+        elif sum < target:
+            p1 += 1
+        else:
+            p2 -= 1
+    return False
+    
+arr = [2,3,4,5,6]
+target = 17
+result = solve(arr)
+print(result)
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+palindromic substring:-
+1)count number of palindromic substring
+2)count largest palindromic substring
+3)smallest palindromic substring which is not 1 in length.
+
+
+
+
+fun(n):
+if n<=2: return
+print(n)
+fun(n-2)
+fun(n-4)
+print(n)
+
+example:-
+fun(10) 1,2,3,4,5
+  |
+fun(8) 1,2,3,4,5
+  |
+fun(6) 1,2,3,4,5
+  |
+fun(4) 1,2,3,4,5
+  |
+fun(2) 1,2,3,4,5
