@@ -1,70 +1,105 @@
-three pointer algorithm:- The three-pointer algorithm is typically used in more complex problems or problems with specific 
-constraints. In this algorithm, three pointers are manipulated to track specific positions within the array or sequence.
-def solve(arr):
-    for p3 in range(len(arr)-2):
-        p1 = p3+1
-        p2 = len(arr)-1
-        while p1<p2:
-            sum = arr[p1] + arr[p2] + arr[p3]
-            if sum == target:
-                return (arr[p1], arr[p2], arr[p3])
-            elif sum < target:
-                p1 += 1
+1)ALL PALINDROME STRINGS:
+
+def main():
+    _str = "madammadam"
+    #a = int(input())
+    n = len(_str)
+    dp = [[0 for i in range(n)] for j in range(n)]
+    #print(dp)
+    i,j = 0,0
+    count = 0
+    while j < n:
+        jflag = j
+        while jflag < n:
+            if i == jflag:
+                dp[i][jflag] = 1
+                count+=1
+                
+            elif abs(i-jflag) == 1:
+                if _str[i]==_str[jflag]:
+                    dp[i][jflag]=1
+                    count+=1
+                else:
+                    dp[i][jflag]=0
             else:
-                p2 -= 1
-    return False
-    
-arr = [2,3,4,5,6]
-target = 15
-result = solve(arr)
-print(result)
+                if _str[i]==_str[jflag]:
+                    if dp[i+1][jflag-1]==1:
+                        dp[i][jflag]=1
+                        count+=1
+                    else:
+                        dp[i][jflag]=0
+                else:
+                    dp[i][jflag]=0
+            i+=1
+            jflag+=1
+        j+=1
+        i=0
+    #print(dp)
+    return count
 
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+print(main())
 
-two pointer algorithm:-  for solving problems that involve arrays or sequences. It is especially useful for optimizing the time 
-complexity of certain algorithms. The basic idea behind the two-pointer algorithm is to use two pointers, often initialized at 
-different positions in the array, and then manipulate these pointers to traverse the array or sequence efficiently.
-def solve(arr):
-    p1 = 0
-    p2 = len(arr)-1
-    while p1<p2:
-        sum = arr[p1] + arr[p2]
-        if sum == target:
-            return (arr[p1], arr[p2])
-        elif sum < target:
-            p1 += 1
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+2)RECURSION:
+
+from time import *
+
+def fun(n):
+    if n<=2: return n
+    return fun(n-2)+fun(n-4)
+# start_time = perf_counter()
+# ans = fun(16)
+# sleep(0)
+# end_time = perf_counter()
+# print((end_time-start_time)*1000," ms")
+
+dp =  [-100 for i in range(17)]
+def optimised_fun(n):
+    global dp 
+    if dp[n] != -100:
+        return dp[n]
+    if n<=2:
+        dp[n] = n
+        return n
+    ans1 = fun(n-2)
+    ans2 = fun(n-4)
+    dp[n-2] = ans1
+    dp[n-4] = ans2
+    return ans1+ans2
+print(optimised_fun(16))
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+3)
+n = 3
+dp = [[0]*n]*n
+#print(dp)
+
+dp[0][1] = 5
+#print(dp)
+
+
+dp2 = [[0 for i in range(n)] for j in range(n)]
+print(dp2)
+dp2[0][1] = 5
+print(dp2)
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+4) UNIQUE POSITION:
+
+def main():
+    _str = "bfbfbfbbfbbfbfbfb"
+    visited = [0 for i in range(1000)]
+    cp = 0
+    visited[cp]=1
+    ans = 1
+    for ch in _str:
+        if ch == 'b':
+            if cp-1>=0:
+                cp-=1
         else:
-            p2 -= 1
-    return False
-    
-arr = [2,3,4,5,6]
-target = 17
-result = solve(arr)
-print(result)
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            cp+=2
+        if visited[cp]!=1:
+            ans+=1
+            visited[cp]=1
+    return ans
 
-palindromic substring:-
-1)count number of palindromic substring
-2)count largest palindromic substring
-3)smallest palindromic substring which is not 1 in length.
-
-
-
-
-fun(n):
-if n<=2: return
-print(n)
-fun(n-2)
-fun(n-4)
-print(n)
-
-example:-
-fun(10) 1,2,3,4,5
-  |
-fun(8) 1,2,3,4,5
-  |
-fun(6) 1,2,3,4,5
-  |
-fun(4) 1,2,3,4,5
-  |
-fun(2) 1,2,3,4,5
+print(main())   
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
